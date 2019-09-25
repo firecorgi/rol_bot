@@ -33,6 +33,16 @@ if ($body->message->text == 'что ты знаешь о гримлеге?') {
     ]);
 }
 
+if ($body->message->text == 'что ты знаешь о маготике?') {
+    $client->post(URL . 'sendMessage', [
+        'json' => [
+            'chat_id'             => $chat->id,
+            'text'                => "Маготик хуй в ротик, голодный проглотик!",
+            'reply_to_message_id' => $body->message->message_id,
+        ],
+    ]);
+}
+
 switch ($cmd) {
     case '/joke':
         $txt = html_entity_decode(
