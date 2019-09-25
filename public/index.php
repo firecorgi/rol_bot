@@ -262,6 +262,17 @@ switch ($cmd) {
                 ],
             ]);
         }
+
+
+            if (in_array(trim($body->message->text), ['Маготик, маготик'])) {
+            $client->post(URL . 'sendMessage', [
+                'json' => [
+                    'chat_id'             => $chat->id,
+                    'text'                => time() % 2 ? 'Черный хуй в ротик!': 'Членотик!',
+                    'reply_to_message_id' => $body->message->message_id,
+                ],
+            ]);
+        }
 }
 
 syslog(LOG_ERR, print_r($body, true));
