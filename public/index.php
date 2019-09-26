@@ -23,6 +23,28 @@ $cmd = $arr[0];
 $mentioned = $arr[1] ?? null;
 $body->message->text = mb_strtolower($body->message->text);
 
+if ($body->message->from->first_name == 'Natalie') {
+    if ($body->message->text == 'пидор' || $body->message->text == 'гей') {
+        $client->post(URL . 'sendMessage', [
+            'json' => [
+                'chat_id'             => $chat->id,
+                'text'                => time() % 2 ? 'Алярм, пидор в чате!!!' : '!!! Сообщение от Комача!!!',
+                'reply_to_message_id' => $body->message->message_id,
+            ],
+        ]);
+    }
+}
+
+if (in_array(trim($body->message->text), ['Маготик, маготик'])) {
+    $client->post(URL . 'sendMessage', [
+        'json' => [
+            'chat_id'             => $chat->id,
+            'text'                => time() % 2 ? 'Черный хуй в ротик!': 'Членотик!',
+            'reply_to_message_id' => $body->message->message_id,
+        ],
+    ]);
+}
+
 if ($body->message->text == 'что ты знаешь о гримлеге?') {
     $client->post(URL . 'sendMessage', [
         'json' => [
@@ -258,17 +280,6 @@ switch ($cmd) {
                 'json' => [
                     'chat_id'             => $chat->id,
                     'text'                => 'Ебать тебя в ротик!',
-                    'reply_to_message_id' => $body->message->message_id,
-                ],
-            ]);
-        }
-
-
-            if (in_array(trim($body->message->text), ['Маготик, маготик'])) {
-            $client->post(URL . 'sendMessage', [
-                'json' => [
-                    'chat_id'             => $chat->id,
-                    'text'                => time() % 2 ? 'Черный хуй в ротик!': 'Членотик!',
                     'reply_to_message_id' => $body->message->message_id,
                 ],
             ]);
