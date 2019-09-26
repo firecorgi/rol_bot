@@ -24,7 +24,7 @@ $mentioned = $arr[1] ?? null;
 $body->message->text = mb_strtolower($body->message->text);
 
 if ($body->message->from->first_name == 'Natalie') {
-    if ($body->message->text == 'пидор' || $body->message->text == 'гей') {
+    if ($body->message->text == 'пидор' || $body->message->text == 'гей' || $body->message->text == 'гомосек') {
         $client->post(URL . 'sendMessage', [
             'json' => [
                 'chat_id'             => $chat->id,
@@ -35,7 +35,7 @@ if ($body->message->from->first_name == 'Natalie') {
     }
 }
 
-if (in_array(trim($body->message->text), ['Маготик, маготик'])) {
+if ($body->message->text == 'маготик' || $body->message->text == 'Маготик' ) {
     $client->post(URL . 'sendMessage', [
         'json' => [
             'chat_id'             => $chat->id,
